@@ -1,9 +1,8 @@
 package com.fixdecode.userservice.user;
 
+import com.fixdecode.userservice.helper.VOTemplate;
 import com.fixdecode.userservice.util.ResponseMessage;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -50,14 +49,25 @@ public class UserController {
                         statusCode(OK.value()).
                         build());
     }
+
     @GetMapping("/user/{id}")
-    public ResponseEntity<ResponseMessage> getUserWithDepartment(@PathVariable("id") String userId){
+    public VOTemplate getUserWithDepartment(@PathVariable("id") String userId) {
+        return userService.getUserWithDepartment(userId);
+    }
+
+
+
+
+
+
+ /*   @GetMapping("/user/{id}")
+    public ResponseEntity<VOTemplate> getUserWithDepartment(@PathVariable("id") String userId){
         return ResponseEntity.ok(
-                ResponseMessage.builder()
+                VOTemplate.builder()
                         .data(Map.of("User data", userService.getUserWithDepartment(userId)))
                         .message("User department found").
                         status(OK).
                         statusCode(OK.value()).
                         build());
-    }
+    }*/
 }
